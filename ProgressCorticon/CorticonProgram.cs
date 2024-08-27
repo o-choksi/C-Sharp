@@ -7,9 +7,25 @@ namespace ProgressCorticonIntegration
     {
         static async Task Main(string[] args)
         {
-            var rulesService = new RulesService();
-            var result = await rulesService.ExecuteRuleAsync("SampleRules", new { /* Your input parameters */ });
-            Console.WriteLine($"Rule execution result: {result}");
+            // Create an instance of CorticonClient
+            var corticonClient = new RulesService();
+
+            // Example home prices to test
+            decimal[] homePrices = { 450000, 550000, 300000, 600000 };
+
+            foreach (var price in homePrices)
+            {
+                try
+                {
+                    // Check if the home should be bought based on the price
+                    bool shouldBuy = await corticonClient.ShouldBuyHomeAsync(price);
+                    Console.WriteLine($"Home Price: ${price} - Should Buy: {shouldBuy}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred: {ex.Message}");
+                }
+            }
         }
     }
 }
