@@ -30,18 +30,19 @@ namespace ProgressCorticonIntegration
             );
         }
 
-        public async Task<string> ExecuteRuleAsync(string ruleName, object input)
+        public async Task<bool> ShouldBuyHomeAsync(decimal homePrice)
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, $"/rules/{ruleName}/execute")
+            var requestUri = "https://your-corticon-service-url/decisionmodel/HomePurchaseDecisionModel";
+            var requestBody = new
             {
-                Content = new StringContent(JsonSerializer.Serialize(input), System.Text.Encoding.UTF8, "application/json")
+                HomePrice = homePrice
             };
-
-            var response = await _httpClient.SendAsync(request);
+            var content = new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");
+            var response = await _httpClient.PostAsync(requestUri, content);
             response.EnsureSuccessStatusCode();
-
-            var result = await response.Content.ReadAsStringAsync();
-            return result;
+            var responseContent = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<dynamic>(responseContent);
+            return result.ShouldBuyHome;
         }
     }
 }
