@@ -1,2 +1,2 @@
 # C-Sharp
-C# Libraries, Frameworks, and Tools
+Professional experience with C# Libraries, Frameworks, and Tools 
