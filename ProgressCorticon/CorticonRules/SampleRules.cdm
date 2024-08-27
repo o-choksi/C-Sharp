@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DecisionModel xmlns="http://www.progress.com/2005/09/decisionmodel">
+    <Entities>
+        <Entity name="Person">
+            <Attribute name="age" type="Integer"/>
+            <Attribute name="isEligibleForDiscount" type="Boolean"/>
+        </Entity>
+    </Entities>
+    <Rules>
+        <Rule name="DiscountEligibility">
+            <Condition>
+                <If condition="Person.age &gt; 65">
+                    <Then>
+                        <Set value="True" attribute="Person.isEligibleForDiscount"/>
+                    </Then>
+                    <Else>
+                        <Set value="False" attribute="Person.isEligibleForDiscount"/>
+                    </Else>
+                </If>
+            </Condition>
+        </Rule>
+    </Rules>
+</DecisionModel>
