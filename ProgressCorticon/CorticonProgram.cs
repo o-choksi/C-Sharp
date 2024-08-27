@@ -7,7 +7,7 @@ namespace ProgressCorticonIntegration
     {
         static async Task Main(string[] args)
         {
-            // Create an instance of CorticonClient
+            // Create an instance of RulesService
             var corticonClient = new RulesService();
 
             // Example home prices to test
