@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace ProgressCorticonIntegration
 {
-    class Program
+    class CorticonProgram
     {
         static async Task Main(string[] args)
         {
