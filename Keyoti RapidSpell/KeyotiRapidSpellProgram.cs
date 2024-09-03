@@ -6,7 +6,7 @@ using Keyoti.RapidSpell.Dictionaries;
 
 namespace SpellCheckerApp
 {
-    class KeyootiRapidSpellProgram
+    class KeyotiRapidSpellProgram
     {
         static void Main(string[] args)
         {
