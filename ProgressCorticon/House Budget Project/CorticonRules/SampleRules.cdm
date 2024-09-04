@@ -1,1 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DecisionModel xmlns="http://www.corticon.com/decisionmodel">
+    <Model name="HomePurchaseDecisionModel">
+        <Description>
+            A decision model to determine if a home should be bought based on a budget of $500,000.
+        </Description>
+        
+        <!-- Define Input Variables -->
+        <Inputs>
+            <Variable name="HomePrice" type="Decimal">
+                <Description>The price of the home.</Description>
+            </Variable>
+        </Inputs>
+        
+        <!-- Define Output Variables -->
+        <Outputs>
+            <Variable name="ShouldBuyHome" type="Boolean">
+                <Description>Indicates if the home should be bought based on the budget.</Description>
+            </Variable>
+        </Outputs>
+        
+        <!-- Define Rules -->
+        <Rules>
+            <Rule name="Home Within Budget">
+                <Condition>
+                    <Expression>
+                        <ComparisonOperator>
+                            <ComparisonOperatorType>LessThanOrEqual</ComparisonOperatorType>
+                        </ComparisonOperator>
+                        <LeftOperand>
+                            <Variable name="HomePrice" />
+                        </LeftOperand>
+                        <RightOperand>
+                            <Constant value="500000" />
+                        </RightOperand>
+                    </Expression>
+                </Condition>
+                <Action>
+                    <Expression>
+                        <Assignment>
+                            <Variable name="ShouldBuyHome" />
+                            <Value>
+                                <Constant value="true" />
+                            </Value>
+                        </Assignment>
+                    </Expression>
+                </Action>
+            </Rule>
+            
+            <Rule name="Home Exceeds Budget">
+                <Condition>
+                    <Expression>
+                        <ComparisonOperator>
+                            <ComparisonOperatorType>GreaterThan</ComparisonOperatorType>
+                        </ComparisonOperator>
+                        <LeftOperand>
+                            <Variable name="HomePrice" />
+                        </LeftOperand>
+                        <RightOperand>
+                            <Constant value="500000" />
+                        </RightOperand>
+                    </Expression>
+                </Condition>
+                <Action>
+                    <Expression>
+                        <Assignment>
+                            <Variable name="ShouldBuyHome" />
+                            <Value>
+                                <Constant value="false" />
+                            </Value>
+                        </Assignment>
+                    </Expression>
+                </Action>
+            </Rule>
+        </Rules>
+    </Model>
+</DecisionModel>
 
