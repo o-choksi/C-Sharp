@@ -1,0 +1,11 @@
+@model PersonalFinanceReport.Models.FinanceModel
+@{
+    ViewBag.Title = "Financial Report";
+}
+
+<h2>Your Financial Report</h2>
+
+<p>Net Worth: @ViewBag.NetWorth.ToString("C")</p>
+<p>Financial Health: @ViewBag.FinancialHealth</p>
+
+<a href="@Url.Action("Index")">Go Back</a>

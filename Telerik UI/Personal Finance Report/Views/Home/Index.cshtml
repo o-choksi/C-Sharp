@@ -1,0 +1,31 @@
+@model PersonalFinanceReport.Models.FinanceModel
+@{
+    ViewBag.Title = "Personal Finance Report";
+}
+
+<h2>Enter your financial information</h2>
+
+@using (Html.BeginForm("GenerateReport", "Home", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(m => m.Salary)
+        @(Html.Telerik().NumericTextBoxFor(m => m.Salary).Format("{0:C}"))
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Assets)
+        @(Html.Telerik().NumericTextBoxFor(m => m.Assets).Format("{0:C}"))
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Liabilities)
+        @(Html.Telerik().NumericTextBoxFor(m => m.Liabilities).Format("{0:C}"))
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Age)
+        @(Html.Telerik().NumericTextBoxFor(m => m.Age).Min(18).Max(100))
+    </div>
+
+    <button type="submit">Generate Report</button>
+}
